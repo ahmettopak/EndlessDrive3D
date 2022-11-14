@@ -21,5 +21,6 @@ public class RoadSpawnController : MonoBehaviour
         float newZ = RoadList[RoadList.Count-1].transform.position.z+offset;
         moveRoad.transform.position= new Vector3 (0, 0, newZ);
         RoadList.Add(moveRoad);
+        
     }
 }

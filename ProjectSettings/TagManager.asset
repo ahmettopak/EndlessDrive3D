@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - RoadEnd
+  - Spikes
+  - Barrier
+  - SpawnPoint
   layers:
   - Default
   - TransparentFX
@@ -12,7 +15,7 @@ TagManager:
   - BG
   - Water
   - UI
-  - 
+  - BackgorunUI
   - 
   - 
   - 
