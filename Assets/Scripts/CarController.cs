@@ -21,15 +21,26 @@ public class CarController : MonoBehaviour
 
     void Update()
     {
+        if (speed<29) {
+            if (distance == 50) speed++;
+            if (distance == 200) speed++;
+            if (distance == 350) speed++;
+            if (distance == 500) speed = speed + 2;
+            if (distance == 1000) speed = speed + 2;
+            if (distance == 3000) speed = speed + 2;
+            if (distance == 5000) speed = speed + 2;
+            if (distance == 10000) speed++;
+            if (distance == 15000) speed++;
+            if (distance == 20000) speed++;
+        }
         velocity = new Vector3(Input.GetAxis("Horizontal"), 0f);
-        car.transform.position = new Vector3(car.transform.position.x, car.transform.position.y, car.transform.position.z+speed*Time.timeScale*Time.deltaTime);
-        car.transform.position += velocity*turnSpeed*Time.deltaTime;
+
+        car.transform.position = new Vector3(car.transform.position.x, car.transform.position.y, car.transform.position.z + speed * Time.deltaTime);
+            
+        car.transform.position += velocity * speed * Time.deltaTime*Time.timeScale;
+     
         if (!isGameOver) {
-            Time.timeScale = 1;
-            if (Random.Range(0, 20) == 15) {
-                spawnManager.BarrierSpawnEntered();
-                spawnManager.CoinSpawnEntered();
-            }       
+            Time.timeScale = 1;      
         }
         else {
             Time.timeScale = 0;        
@@ -39,20 +50,20 @@ public class CarController : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision collision) {
-        if (collision.gameObject.tag == "Barrier") {
-            Debug.Log("Game over");
-            Time.timeScale = 0;
-            isGameOver = true;
+        //if (collision.gameObject.tag == "Barrier") {
+        //    Debug.Log("Game over");
+        //    Time.timeScale = 0;
+        //    isGameOver = true;
             
-        }
-        if (collision.gameObject.tag=="Coin") {
-            score += 5;
-        }
+        //}
+        //if (collision.gameObject.tag=="Coin") {
+        //    score += 5;
+        //}
     }
     private void OnTriggerEnter(Collider other) {
         if (other.gameObject.tag == "RoadEnd") {
             spawnManager.RoadSpawnEntered();
-            
+
         }
     }
 
